@@ -7,7 +7,6 @@
     "node": "12.x"
   },
   "scripts": {
-    "build": "npm install && npm run build",
     "start": "node index.js",
     "acceptance": "jest --coverage --detectOpenHandles",
     "jsdoc": "node_modules/.bin/jsdoc -c jsdoc.conf",
@@ -47,9 +46,5 @@
     "jest": "^24.1.0",
     "jsdoc": "^3.6.3",
     "jsdoc-route-plugin": "^0.1.0"
-  },
-  "engine": {
-    "node": "12.4.0",
-    "npm": "6.9.0"
   }
 }
