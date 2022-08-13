@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Home Page</title>
+	<meta name="description" content="form to add new books">
+	<meta name="author" content=" Kebrom">
+	<link href="style.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+
+	<ul class="ul" class="centerText">
+		<li class="li"><a href="/">Home</a></li>
+		<li><a class="active" href="#AddJob">Add Job</a></li>
+		<li><a href="#Status">Status</a></li>
+		<li><a href="/logout">Logout</a></li>
+		<li> <a href="/register">Register</a> </li>
+	</ul>
+
+	{{#if msg}}
+ 			<p class="msg">{{msg}}</p>
+		{{/if}}
+
+	<form action="/AddJob" method="post">
+
+		<p>CustomerID: <input type="text" name="CustomerID" placeholder="" ></p>
+		<p>Appliance Type: <input type="text" name="ApplianceType" placeholder=""  ></p>
+		<p>Appliance Age: <input type="text" name="ApplianceAge" placeholder="" value=""></p>
+		<p>Manufacturer: <input type="text" name="Manufacturer" placeholder="" value=""></p>
+		<p>FaultDescription: <input type="text" name="FaultDescription" placeholder="" value=""></p>
+
+		<p><input type="submit" value="AddJob"></p>
+	</form>
+
+</body>
+
+</html>
