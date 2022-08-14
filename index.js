@@ -35,6 +35,7 @@ app.use(bodyParser())
 app.use(session(app))
 app.use(views(`${__dirname}/views`, { extension: 'handlebars' }, { map: { handlebars: 'handlebars' } }))
 
+
 const defaultPort = 8080
 const port = process.env.PORT || defaultPort
 const dbName = 'Domestic-Repairs.db'
@@ -52,7 +53,11 @@ router.get('/', async ctx => await ctx.render('index'))
 
 router.get('/about', async ctx => await ctx.render('about'))
 router.get('/service', async ctx => await ctx.render('service'))
-router.get('/MOT', async ctx => await ctx.render('MOT'))
+router.get('/MOT', async ctx => await ctx.render('MOT', { MOTImag: 'about' }))
+
+
+
+
 router.get('/MOTBooking', async ctx => await ctx.render('MOTBooking'))
 router.get('/F-gas', async ctx => await ctx.render('F-gas'))
 router.get('/carsforsale', async ctx => await ctx.render('carsforsale'))
