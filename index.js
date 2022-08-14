@@ -56,78 +56,10 @@ router.get('/service', async ctx => await ctx.render('service'))
 router.get('/MOT', async ctx => await ctx.render('MOT', { MOTImag: 'about' }))
 
 
-
-
 router.get('/MOTBooking', async ctx => await ctx.render('MOTBooking'))
 router.get('/F-gas', async ctx => await ctx.render('F-gas'))
 router.get('/carsforsale', async ctx => await ctx.render('carsforsale'))
 
-
-
-
-
-router.get('/addjob', async ctx => await ctx.render('addjob'))
-
-
-
-/**
- * The user registration page.
- *
- * @name Register Page
- * @route {GET} /register
- */
-router.get('/register', async ctx => await ctx.render('register'))
-
-/**
- * The script to process new user registrations.
- *
- * @name Register Script
- * @route {POST} /register
- */
-
-
-router.post('/register', koaBody, async ctx => {
-	try {
-		// extract the data from the request
-		const body = ctx.request.body
-		console.log(body)
-		const { path, type } = ctx.request.files.avatar
-		// call the functions in the module
-		const user = await new User(dbName)
-		await user.register(body.FName, body.LName, body.DateOfBirth, body.Email, body.Password)
-		// await user.uploadPicture(path, type)
-		// redirect to the home page
-		ctx.redirect(`/?msg=new user "${body.name}" added`)
-	} catch (err) {
-		await ctx.render('error', { message: err.message })
-	}
-})
-
-
-
-router.get('/login', async ctx => {
-	const data = {}
-	if (ctx.query.msg) data.msg = ctx.query.msg
-	if (ctx.query.user) data.user = ctx.query.user
-	await ctx.render('login', data)
-})
-
-router.post('/login', async ctx => {
-	try {
-		const body = ctx.request.body
-		const user = await new User(dbName)
-		await user.login(body.FName, body.Password)
-		ctx.session.authorised = true
-		return ctx.redirect('/?msg=you are now logged in...')
-	} catch (err) {
-		await ctx.render('error', { message: err.message })
-	}
-})
-
-router.get('/logout', async ctx => {
-	ctx.session.authorised = null
-	ctx.redirect('/?msg=you are now logged out')
-})
 
 app.use(router.routes())
 module.exports = app.listen(port, async () => console.log(`listening on port ${port}`))
