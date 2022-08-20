@@ -49,17 +49,74 @@ const saltRounds = 10
  * @authentication This route requires cookie-based authentication.
  */
 router.get('/', async ctx => await ctx.render('index'))
+router.post('/', koaBody, async ctx => {
+    try {
 
+        ctx.redirect(`/`)
+    } catch (err) {
+        await ctx.render('error', { message: err.message })
+    }
+})
 
 router.get('/about', async ctx => await ctx.render('about'))
-router.get('/service', async ctx => await ctx.render('service'))
-router.get('/MOT', async ctx => await ctx.render('MOT', { MOTImag: 'about' }))
+router.post('/about', koaBody, async ctx => {
+    try {
 
+        ctx.redirect(`/about`)
+    } catch (err) {
+        await ctx.render('error', { message: err.message })
+    }
+})
+
+router.get('/service', async ctx => await ctx.render('service'))
+router.post('/service', koaBody, async ctx => {
+    try {
+
+        ctx.redirect(`/service`)
+    } catch (err) {
+        await ctx.render('error', { message: err.message })
+    }
+})
+
+router.get('/MOT', async ctx => await ctx.render('MOT', { MOTImag: 'about' }))
+router.post('/MOT', koaBody, async ctx => {
+    try {
+
+        ctx.redirect(`/MOT`)
+    } catch (err) {
+        await ctx.render('error', { message: err.message })
+    }
+})
 
 router.get('/MOTBooking', async ctx => await ctx.render('MOTBooking'))
-router.get('/F-gas', async ctx => await ctx.render('F-gas'))
-router.get('/carsforsale', async ctx => await ctx.render('carsforsale'))
+router.post('/MOTBooking', koaBody, async ctx => {
+    try {
 
+        ctx.redirect(`/MOTBooking`)
+    } catch (err) {
+        await ctx.render('error', { message: err.message })
+    }
+})
+
+router.get('/F-gas', async ctx => await ctx.render('F-gas'))
+router.post('/F-gas', koaBody, async ctx => {
+    try {
+
+        ctx.redirect(`/F-gas`)
+    } catch (err) {
+        await ctx.render('error', { message: err.message })
+    }
+})
+
+router.get('/carsforsale', async ctx => await ctx.render('carsforsale'))
+router.post('/carsforsale', koaBody, async ctx => {
+    try {
+
+        ctx.redirect(`/carsforsale`)
+    } catch (err) {
+        await ctx.render('error', { message: err.message })
+    }
+})
 
 app.use(router.routes())
 module.exports = app.listen(port, async () => console.log(`listening on port ${port}`))
